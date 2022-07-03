@@ -3,7 +3,6 @@ import re
 import warnings
 
 import requests
-from requests import Response
 
 import _common as _c
 import _exceptions as _ex
