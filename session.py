@@ -45,7 +45,7 @@ class Session:
             req.json()
         except Exception:
             if req.status_code == 403:
-                raise _ex.LoginFailed("""
+                raise _ex.LoginError("""
                 Login from this device has been denied.
                 The following possibilities are available:
                 Your IP address may be blocked - you often can't login from Replit
@@ -60,7 +60,7 @@ class Session:
             self.sessions_id = re.search('"(.*)"', req.headers["Set-Cookie"]).group()
             self.x_token = req.json()[0]["token"]
         except AttributeError:
-            raise _ex.InvaildInput("An invalid user name or password was entered.")
+            raise _ex.InputError("An invalid user name or password was entered.")
         else:
             print("Successfully logged in!")
 
