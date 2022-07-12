@@ -1,8 +1,8 @@
-class LoginFailed(Exception):
+class LoginError(Exception):
     pass
 
 
-class InvaildInput(Exception):
+class InputError(Exception):
     pass
 
 
@@ -10,5 +10,5 @@ class UnknownError(Exception):
     pass
 
 
-class InvalidAction(Exception):
+class ActionError(Exception):
     pass
