@@ -21,6 +21,7 @@ class Session:
         if (self.username is not None) and (self.password is not None):
             self._login()
             self.is_login = True
+
         else:
             warnings.warn("""
             ScratchRequire without login.
@@ -43,6 +44,7 @@ class Session:
 
         try:
             req.json()
+
         except Exception:
             if req.status_code == 403:
                 raise _ex.LoginError("""
@@ -50,6 +52,7 @@ class Session:
                 The following possibilities are available:
                 Your IP address may be blocked - you often can't login from Replit
                 """)
+
             else:
                 raise _ex.UnknownError("""
                 An unknown error has occurred.
@@ -59,8 +62,10 @@ class Session:
         try:
             self.sessions_id = re.search('"(.*)"', req.headers["Set-Cookie"]).group()
             self.x_token = req.json()[0]["token"]
+
         except AttributeError:
             raise _ex.InputError("An invalid user name or password was entered.")
+
         else:
             print("Successfully logged in!")
 
